@@ -1,5 +1,6 @@
 package com.core.reflection;
 
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -82,7 +83,8 @@ public class Test {
     public static Person createPersonByProperties(){
         try {
             Properties properties = new Properties();
-            properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("person.properties"));
+            InputStream file = Thread.currentThread().getContextClassLoader().getResourceAsStream("person.properties");
+            properties.load(file);
             return Factory.getInstance().createPerson(properties.getProperty("person"));
         }catch (Exception e){
             return null;
