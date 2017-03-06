@@ -1,5 +1,8 @@
 package com.core.reflection;
 
+import org.junit.*;
+import org.junit.contrib.java.lang.system.SystemOutRule;
+
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -7,10 +10,43 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Properties;
 
+import static org.junit.Assert.*;
+
 /**
- * Created by Administrator on 2017/2/22.
+ * Created by wuxinjian on 2017/3/6.
  */
-public class Test {
+public class ReflectionTest {
+
+    @Rule
+    public final SystemOutRule log = new SystemOutRule();
+
+    @Test
+    public void reflectionTest() {
+        log.enableLog();
+        Class clazz = Person.class;
+        String fullClassName = getName(clazz);
+        assertEquals("packageName = com.core.reflection\n" +
+                        "fullClassName = com.core.reflection.Person\n" +
+                        "className = Person\n",
+                log.getLogWithNormalizedLineSeparator());
+        log.clearLog();
+        createObject(fullClassName);
+        assertTrue(log.getLog().contains("person = Person"));
+        log.clearLog();
+        getConstructors(clazz);
+        assertTrue(log.getLog().contains("Person()"));
+        log.clearLog();
+        getMethods(clazz);
+        assertTrue(log.getLog().contains("public int getAge();"));
+        log.clearLog();
+        getFields(clazz);
+        assertTrue(log.getLog().contains("int age;"));
+        log.clearLog();
+        Person person = createPersonByProperties();
+        System.out.println(person);
+        assertEquals("Person{name='小明',age=0}\n",
+                log.getLogWithNormalizedLineSeparator().replace(" ",""));
+    }
 
     //输出类的名称、所在包的名称
     public static String getName(Class clazz) {
@@ -72,33 +108,23 @@ public class Test {
         }
     }
 
-    public static void getFields(Class clazz){
-        Field[] fields=clazz.getDeclaredFields();
-        for(Field field : fields){
-            System.out.print(Modifier.toString(field.getModifiers())+" ");
-            System.out.println(field.getType()+" "+field.getName()+ ";");
+    public static void getFields(Class clazz) {
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            System.out.print(Modifier.toString(field.getModifiers()) + " ");
+            System.out.println(field.getType() + " " + field.getName() + ";");
         }
     }
 
-    public static Person createPersonByProperties(){
+    public static Person createPersonByProperties() {
         try {
             Properties properties = new Properties();
             InputStream file = Thread.currentThread().getContextClassLoader().getResourceAsStream("person.properties");
             properties.load(file);
             return Factory.getInstance().createPerson(properties.getProperty("person"));
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
-    public static void main(String[] args) {
-        Class clazz = Person.class;
-        String fullClassName = getName(clazz);
-        createObject(fullClassName);
-        getConstructors(clazz);
-        getMethods(clazz);
-        getFields(clazz);
-        Person person = createPersonByProperties();
-        System.out.println(person);
-    }
 }

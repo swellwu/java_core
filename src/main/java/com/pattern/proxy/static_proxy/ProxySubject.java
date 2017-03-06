@@ -8,8 +8,8 @@ import com.pattern.proxy.RealSubject;
  */
 public class ProxySubject implements ISubject {
     private ISubject realSubject;
-    public ProxySubject() {
-        realSubject = new RealSubject();
+    public ProxySubject(ISubject subject) {
+        realSubject=subject;
     }
 
     @Override
