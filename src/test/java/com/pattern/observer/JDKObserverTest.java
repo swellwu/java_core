@@ -4,6 +4,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -42,5 +44,6 @@ public class JDKObserverTest {
         String observerTwoString=format(name1,37,55,100);
         assertTrue(log.getLogWithNormalizedLineSeparator().contains(observerOneString));
         assertTrue(log.getLogWithNormalizedLineSeparator().contains(observerTwoString));
+        HashMap<String,String> map=new HashMap<>();
     }
 }
