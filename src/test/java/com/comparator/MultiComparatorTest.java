@@ -3,13 +3,10 @@ package com.comparator;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by wuxinjian on 2017/6/1.
@@ -19,21 +16,21 @@ public class MultiComparatorTest {
     MultiComparator multiComparator = new MultiComparator();
 
     @Before
-    public void init(){
+    public void init() {
         Random random = new Random(System.currentTimeMillis());
-        for(int i=0;i<500;++i){
+        for (int i = 0; i < 500; ++i) {
             Student student = new Student();
             int scoreMin = 0;
-            int scoreMax =100;
-            int score = scoreMin+Math.abs(random.nextInt())%Math.subtractExact(scoreMax,scoreMin);
+            int scoreMax = 100;
+            int score = scoreMin + Math.abs(random.nextInt()) % Math.subtractExact(scoreMax, scoreMin);
             student.setScore(score);
-            int ageMin=10;
+            int ageMin = 10;
             int ageMax = 20;
-            int age = ageMin+Math.abs(random.nextInt())%Math.subtractExact(ageMax,ageMin);
+            int age = ageMin + Math.abs(random.nextInt()) % Math.subtractExact(ageMax, ageMin);
             student.setAge(age);
             int tallMin = 120;
-            int tallMax= 210;
-            int tall = tallMin+Math.abs(random.nextInt())%Math.subtractExact(tallMax,tallMin);
+            int tallMax = 210;
+            int tall = tallMin + Math.abs(random.nextInt()) % Math.subtractExact(tallMax, tallMin);
             student.setTall(tall);
             multiComparator.addStudent(student);
         }
@@ -51,7 +48,7 @@ public class MultiComparatorTest {
         assertTrue(sortedTrue);
     }
 
-    void printStudentList(List<Student> list){
+    void printStudentList(List<Student> list) {
         System.out.println(list);
     }
 }
