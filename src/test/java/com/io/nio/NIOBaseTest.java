@@ -8,7 +8,8 @@ import org.junit.contrib.java.lang.system.SystemOutRule;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Administrator on 2017/3/31.
@@ -46,7 +47,7 @@ public class NIOBaseTest {
         log.clearLog();
         nioBase.channelTransfer();
         nioBase.printFile(nioBase.getDestName());
-        assertEquals(log.getLogWithNormalizedLineSeparator(),srcString);
+        assertTrue(log.getLogWithNormalizedLineSeparator().contains(srcString));
     }
 
 }

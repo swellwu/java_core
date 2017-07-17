@@ -55,5 +55,11 @@
             <artifactId>gson</artifactId>
             <version>2.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.springside</groupId>
+            <artifactId>springside-utils</artifactId>
+            <version>5.0.0-RC1</version>
+        </dependency>
     </dependencies>
 </project>
