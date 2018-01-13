@@ -14,13 +14,6 @@ public class JdkDynamicProxy implements InvocationHandler {
         this.obj = obj;
     }
 
-    /**
-     * 生成代理类工厂
-     *
-     * @param realObj
-     * @return 返回生成的代理类
-     * @author com.tiantian
-     */
     public static Object getProxyInstance(Object realObj) {
         Class<?> classType = realObj.getClass();
         return Proxy.newProxyInstance(classType.getClassLoader(),
