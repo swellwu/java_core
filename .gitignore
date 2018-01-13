@@ -18,6 +18,7 @@ disconf/download/
 bin/
 #git file
 *.orig
+*.class
 
 #mac
 #DS_Store

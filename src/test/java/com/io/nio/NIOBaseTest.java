@@ -1,9 +1,6 @@
 package com.io.nio;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 
 import java.io.IOException;
@@ -14,6 +11,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by Administrator on 2017/3/31.
  */
+@Ignore
 public class NIOBaseTest {
 
     @Rule
