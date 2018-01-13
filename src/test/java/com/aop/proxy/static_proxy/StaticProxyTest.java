@@ -1,9 +1,8 @@
-package com.pattern.proxy.static_proxy;
+package com.aop.proxy.static_proxy;
 
-import com.pattern.proxy.ISubject;
-import com.pattern.proxy.RealSubject;
+import com.aop.proxy.ISubject;
+import com.aop.proxy.RealSubject;
 import org.junit.*;
-import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 
 import static org.junit.Assert.*;

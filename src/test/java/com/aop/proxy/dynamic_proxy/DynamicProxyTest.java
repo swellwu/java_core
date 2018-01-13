@@ -1,7 +1,7 @@
-package com.pattern.proxy.dynamic_proxy;
+package com.aop.proxy.dynamic_proxy;
 
-import com.pattern.proxy.ISubject;
-import com.pattern.proxy.RealSubject;
+import com.aop.proxy.ISubject;
+import com.aop.proxy.RealSubject;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;

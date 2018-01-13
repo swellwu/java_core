@@ -1,8 +1,5 @@
-package com.pattern.proxy.static_proxy;
-
-import com.pattern.proxy.ISubject;
-import com.pattern.proxy.RealSubject;
-
+package com.aop.proxy.static_proxy;
+import com.aop.proxy.ISubject;
 /**
  * Created by wuxinjian on 2017/2/21.
  */
