@@ -24,10 +24,10 @@ public class DynamicProxyTest {
     }
 
     @Test
-    public void dynamicProxyTest() throws Exception {
+    public void SdkDynamicProxyTest() throws Exception {
         log.enableLog();
         RealSubject realSubject = new RealSubject();
-        ISubject subject = (ISubject)SubjectInvocationHandler.getProxyInstanceFactory(realSubject);
+        ISubject subject = (ISubject) JdkDynamicProxy.getProxyInstance(realSubject);
         subject.request();
         assertEquals("before\n"+
                 "realSubject requesting\n"+
@@ -38,4 +38,17 @@ public class DynamicProxyTest {
         assertTrue(log.getLog().contains("$Proxy"));
     }
 
+    @Test
+    public void CglibDynamicProxyTest(){
+        log.enableLog();
+        RealSubject realSubject = new RealSubject();
+        ISubject subject = (ISubject) new CglibDynamicProxy().getProxyInstance(realSubject);
+        subject.request();
+        assertEquals("before\n"+
+                        "realSubject requesting\n"+
+                        "after\n",
+                log.getLogWithNormalizedLineSeparator());
+        log.clearLog();
+        System.out.println(subject.getClass().getSuperclass());
+    }
 }

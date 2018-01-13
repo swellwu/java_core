@@ -7,10 +7,10 @@ import java.lang.reflect.Proxy;
 /**
  * Created by wuxinjian on 2017/2/21.
  */
-public class SubjectInvocationHandler implements InvocationHandler {
+public class JdkDynamicProxy implements InvocationHandler {
     private Object obj;
 
-    public SubjectInvocationHandler(Object obj) {
+    public JdkDynamicProxy(Object obj) {
         this.obj = obj;
     }
 
@@ -21,10 +21,10 @@ public class SubjectInvocationHandler implements InvocationHandler {
      * @return 返回生成的代理类
      * @author com.tiantian
      */
-    public static Object getProxyInstanceFactory(Object realObj) {
+    public static Object getProxyInstance(Object realObj) {
         Class<?> classType = realObj.getClass();
         return Proxy.newProxyInstance(classType.getClassLoader(),
-                classType.getInterfaces(), new SubjectInvocationHandler(realObj));
+                classType.getInterfaces(), new JdkDynamicProxy(realObj));
     }
 
     @Override
